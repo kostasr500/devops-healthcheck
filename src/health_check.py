@@ -2,6 +2,7 @@
 
 # gia kateythian xrisi se terminal kai oxi hardcoded ston kodika
 import argparse
+import requests
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -16,6 +17,17 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def check_endpoint(url: str) -> None:
+    print(f"Pinging {url}...")
+    response = requests.get(url)
+    print(f"Response code: {response.status_code}")
+
+    if response.status_code == 200:
+        print("Status: ONLINE ")
+    else:
+        print(f"Status: ERROR (Code {response.status_code})")
+
+
 if __name__ == "__main__":
     args = parse_arguments()
-    print(f"Target URL received: {args.url}")
+    check_endpoint(args.url)
