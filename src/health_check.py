@@ -3,6 +3,7 @@
 # gia kateythian xrisi se terminal kai oxi hardcoded ston kodika
 import argparse
 import requests
+import time
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -19,13 +20,20 @@ def parse_arguments() -> argparse.Namespace:
 
 def check_endpoint(url: str) -> None:
     print(f"Pinging {url}...")
+
+    # latency counter start
+    start_time = time.perf_counter()
+
     response = requests.get(url)
-    print(f"Response code: {response.status_code}")
+
+    # stop counter 
+    elapsed_ms = round( (time.perf_counter() - start_time) * 1000, 2 )
 
     if response.status_code == 200:
-        print("Status: ONLINE ")
+        print(f"Status: ONLINE | Latency: {elapsed_ms}ms | Code: {response.status_code}")
     else:
-        print(f"Status: ERROR (Code {response.status_code})")
+        print(f"Status: ERROR | Latency: {elapsed_ms}ms | Code: {response.status_code}")
+
 
 
 if __name__ == "__main__":
