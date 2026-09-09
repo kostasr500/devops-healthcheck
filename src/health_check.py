@@ -4,6 +4,7 @@
 import argparse
 import requests
 import time
+import sys
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -35,13 +36,17 @@ def check_endpoint(url: str, timeout: float) -> None:
 
         if 200 <= response.status_code < 300:
             print(f"Status: ONLINE | Latency: {elapsed_ms}ms | Code: {response.status_code}")
+            sys.exit(0)
         else:
             print(f"Status: ERROR | Latency: {elapsed_ms}ms | Code: {response.status_code}")
+            sys.exit(1)
 
     except requests.exceptions.Timeout:
         print(f"Status: TIMEOUT | Failed to respond within {timeout}s")
+        sys.exit(2)
     except requests.exceptions.RequestException as err:
         print(f"Status: CONNECTION ERROR | Could not reach host ({err.__class__.__name__})")
+        sys.exit(2)
 
 
 if __name__ == "__main__":
