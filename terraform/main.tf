@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "rg-devops-healthcheck-dev"
-  location = "westeurope"
+  name     = "rg-${var.project_name}-${var.environment}"
+  location = var.location
 
   tags = {
-    Environment = "Development"
-    Project     = "devops-healthcheck"
+    Environment = var.environment
+    Project     = var.project_name
     ManagedBy   = "Terraform"
   }
 }
