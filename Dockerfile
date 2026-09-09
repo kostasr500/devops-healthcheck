@@ -12,6 +12,6 @@ COPY src/ ./src/
 RUN useradd -u 1000 -m appuser
 USER appuser
 
-
+# output help an den exoume dwsei website link
 ENTRYPOINT ["python", "src/health_check.py"]
 CMD ["--help"]
