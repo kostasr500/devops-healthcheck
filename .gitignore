@@ -4,3 +4,10 @@
 # compiled cache
 __pycache__/
 *.py[cod]
+
+
+# add ignore stuff for Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
