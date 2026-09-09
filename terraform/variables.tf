@@ -1,7 +1,7 @@
 variable "location" {
   type        = string
   description = "The Azure region where resources will be deployed"
-  default     = "westeurope"
+  default     = "italynorth"
 }
 
 variable "environment" {
