@@ -11,3 +11,11 @@ __pycache__/
 *.tfstate
 *.tfstate.*
 crash.log
+
+# Sensitive variable definitions and local overrides
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
