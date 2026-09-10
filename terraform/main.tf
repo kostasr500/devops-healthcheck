@@ -42,8 +42,7 @@ resource "azurerm_container_group" "aci" {
     image  = "${azurerm_container_registry.acr.login_server}/devops-healthcheck:1.0.0"
     cpu    = "0.5"
     memory = "0.5"
-
-    commands = ["python", "src/health_check.py", "--url", "https://httpbin.org/status/200"]
+    commands = ["python", "src/health_check.py", "--url", var.target_url]
   }
 
   tags = {
