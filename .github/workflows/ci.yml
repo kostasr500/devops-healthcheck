@@ -30,6 +30,7 @@ jobs:
       - name: Test CLI execution
         run: |
           python src/health_check.py --url https://httpbin.org/status/200 --timeout 5
+
   docker-build:
     name: Build and test Docker
     runs-on: ubuntu-latest
@@ -42,6 +43,6 @@ jobs:
         run: |
           docker build -t devops-healthcheck:ci .
 
-          -name: test container execution
-          run: |
-            docker run --rm devops-healthcheck:ci --url https://httpbin.org/status/200 --timeout 5
+      - name: test container execution
+        run: |
+          docker run --rm devops-healthcheck:ci --url https://httpbin.org/status/200 --timeout 5
