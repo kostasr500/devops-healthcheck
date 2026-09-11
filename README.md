@@ -68,6 +68,8 @@ You'll need the Azure CLI logged in (`az login`) and Terraform installed. Check 
 │   ├── outputs.tf
 │   ├── providers.tf
 │   └── variables.tf
+├── .dockerignore
+├── .gitignore
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
