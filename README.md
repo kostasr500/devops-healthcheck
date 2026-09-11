@@ -1,5 +1,8 @@
 # DevOps URL - Health Check
 
+[![Continuous Integration](https://github.com/kostasr500/devops-healthcheck/actions/workflows/ci.yml/badge.svg)](https://github.com/kostasr500/devops-healthcheck/actions/workflows/ci.yml)
+[![Continuous Deployment](https://github.com/kostasr500/devops-healthcheck/actions/workflows/cd.yml/badge.svg)](https://github.com/kostasr500/devops-healthcheck/actions/workflows/cd.yml)
+
 A simple health-check tool for websites: a Python CLI script, containerized with Docker, tested and built through GitHub Actions on every push, and deployed to Azure through Terraform, with the image automatically pushed to a container registry when changes land on `main`.
 
 ## What it does
@@ -31,7 +34,7 @@ A couple of things I paid attention to in the Dockerfile: it's built on `python:
 
 There are two GitHub Actions workflows:
 
-- **`ci.yml`** runs on pull requests to `main` and on pushes to `feat/**` branches. It first runs the Python checks (installs dependencies, runs the CLI against a test endpoint, checks the exit codes behave correctly), then builds the Docker image and runs a smoke test with it.
+- **`ci.yml`** runs on pull requests to `main` and on pushes to `feat/**` branches. It first runs the Python checks (installs dependencies, runs the CLI against a test endpoint to ensure clean exit-code termination), then builds the Docker image and runs a smoke test with it.
 - **`cd.yml`** only runs on merges to `main` (or manually via `workflow_dispatch`). It logs into Azure Container Registry using secrets stored in GitHub (`ACR_USERNAME`, `ACR_PASSWORD`), then builds and pushes the image tagged both with the commit SHA and `latest`.
 
 The idea was to keep testing and deployment separate, nothing gets pushed to the registry unless it's actually merged.
