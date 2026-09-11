@@ -11,6 +11,12 @@ A simple health-check tool for websites: a Python CLI script, containerized with
 
 ```bash
 python src/health_check.py --url https://httpbin.org/status/200 --timeout 5
+
+# Check any URL with a custom timeout
+python src/health_check.py --url https://github.com --timeout 2
+
+# Output results as JSON
+python src/health_check.py --url https://github.com --json
 ```
 
 It also supports `--json` if you want machine-readable output instead of plain text, and it measures round-trip latency so you can see how fast the endpoint responded.
@@ -26,6 +32,9 @@ It exits with different codes depending on the result, which matters if you're c
 ```bash
 docker build -t devops-healthcheck:local .
 docker run --rm devops-healthcheck:local --url https://httpbin.org/status/200 --timeout 5
+
+# Check any website through the container
+docker run --rm devops-healthcheck:local --url https://github.com --timeout 5
 ```
 
 A couple of things I paid attention to in the Dockerfile: it's built on `python:3.12-slim` to keep the image small, it copies `requirements.txt` and installs dependencies before copying the rest of the code so Docker can cache that layer between builds, and it runs as a non-root user (`appuser`) instead of root.
