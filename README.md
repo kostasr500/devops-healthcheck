@@ -34,7 +34,7 @@ There are two GitHub Actions workflows:
 - **`ci.yml`** runs on pull requests to `main` and on pushes to `feat/**` branches. It first runs the Python checks (installs dependencies, runs the CLI against a test endpoint, checks the exit codes behave correctly), then builds the Docker image and runs a smoke test with it.
 - **`cd.yml`** only runs on merges to `main` (or manually via `workflow_dispatch`). It logs into Azure Container Registry using secrets stored in GitHub (`ACR_USERNAME`, `ACR_PASSWORD`), then builds and pushes the image tagged both with the commit SHA and `latest`.
 
-The idea was to keep testing and deployment separate — nothing gets pushed to the registry unless it's actually merged.
+The idea was to keep testing and deployment separate, nothing gets pushed to the registry unless it's actually merged.
 
 ## Infrastructure with Terraform
 
