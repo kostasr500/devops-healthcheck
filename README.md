@@ -1,4 +1,4 @@
-# DevOps URL - Health Check
+# Cloud-Native Monitor & Infrastructure Automation
 
 [![Continuous Integration](https://github.com/kostasr500/devops-healthcheck/actions/workflows/ci.yml/badge.svg)](https://github.com/kostasr500/devops-healthcheck/actions/workflows/ci.yml)
 [![Continuous Deployment](https://github.com/kostasr500/devops-healthcheck/actions/workflows/cd.yml/badge.svg)](https://github.com/kostasr500/devops-healthcheck/actions/workflows/cd.yml)
